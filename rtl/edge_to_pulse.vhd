@@ -22,13 +22,13 @@ architecture behavioural of edge_to_pulse is
 begin
 
     g_both_edge_detector : if edge_g="BOTH" generate
-        pulse_s <= level_i xor input_s;
+        pulse_s <= input_i xor input_s;
     end generate;
     g_rising_edge_detector : if edge_g="RISING" generate
-        pulse_s <= level_i and not input_s; -- new sample 1 -> old sample 0
+        pulse_s <= input_i and not input_s; -- new sample 1 -> old sample 0
     end generate;
     g_falling_edge_detector : if edge_g="FALLING" generate
-        pulse_s <= not level_i and input_s; -- new sample 0 -> old sample 1
+        pulse_s <= not input_i and input_s; -- new sample 0 -> old sample 1
     end generate;
 
     p_pulse_generator : process(clk)
@@ -39,7 +39,7 @@ begin
                 input_s <= '0';
                 pulse_o <= '0';
             else
-                input_s <= level_i;
+                input_s <= input_i;
                 pulse_o <= pulse_s;
             end if;
 

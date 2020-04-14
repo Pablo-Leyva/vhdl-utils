@@ -12,7 +12,7 @@ port (
 );
 end sync_ff;
 
-architecture behavioural of edge_to_pulse is
+architecture behavioural of sync_ff is
 
     signal data_sync_reg_s : std_ulogic_vector(n_stages_g-1 downto 0) := (others => '0');
 
@@ -37,4 +37,4 @@ begin
 
     data_o <= data_sync_reg_s(n_stages_g-1);
 
-end sync_ff;
+end behavioural;

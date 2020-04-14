@@ -39,8 +39,8 @@ begin
             if rst='1' then  pulse_s <= '0';
             else             pulse_s <= pulse_i; end if;
 
-            if rst='1' then  level_s <= '0';
-            elsif edge_s='1' level_s <= not level_s; end if;
+            if rst='1' then       level_s <= '0';
+            elsif edge_s='1' then level_s <= not level_s; end if;
 
         end if;
     end process p_edge_switch;

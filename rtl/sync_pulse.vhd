@@ -21,8 +21,8 @@ architecture behavioural of sync_pulse is
 
 begin
 
-    inst_pulse_to_edge : entity pulse_to_edge
-    generic map ( edge_g => "RISING" );
+    inst_pulse_to_edge : entity work.pulse_to_edge
+    generic map ( edge_g => "RISING" )
     port map(
         clk     => aclk,
         rst     => arst,
@@ -31,7 +31,7 @@ begin
     );
 
     inst_sync_ff : entity work.sync_ff
-    generic map ( n_stages_g => n_stages_g );
+    generic map ( n_stages_g => n_stages_g )
     port map (
         clk    => bclk,
         rst    => brst,
@@ -40,12 +40,12 @@ begin
     );
 
     inst_edge_to_pulse : entity work.edge_to_pulse
-    generic map ( edge_g => "RISING" );
-    port (
+    generic map ( edge_g => "RISING" )
+    port map(
         clk     => bclk,
         rst     => brst,
         input_i => blevel_s,
         pulse_o => bpulse_o
     );
 
-end sync_pulse;
+end behavioural;
