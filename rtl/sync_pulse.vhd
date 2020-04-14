@@ -40,7 +40,7 @@ begin
     );
 
     inst_edge_to_pulse : entity work.edge_to_pulse
-    generic map ( edge_g => "RISING" )
+    generic map ( edge_g => "BOTH" )
     port map(
         clk     => bclk,
         rst     => brst,

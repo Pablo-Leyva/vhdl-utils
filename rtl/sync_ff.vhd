@@ -20,20 +20,15 @@ begin
 
     data_sync_reg_s(0) <= data_i;
 
-    proc_sync : process(clk)
-    begin
-        if rising_edge (clk) then
-
-            if rst='1' then
-                data_sync_reg_s <= (others => '0');
-            else
-                for i in 0 to n_stages_g-2 loop
-                    data_sync_reg_s(i+1) <= data_sync_reg_s(i);
-                end loop;
+    gen_shift : for i in 0 to n_stages_g-2 generate
+        proc_sync : process(clk)
+        begin
+            if rising_edge (clk) then
+                if rst='1' then data_sync_reg_s(i+1) <= '0';
+                else            data_sync_reg_s(i+1) <= data_sync_reg_s(i); end if;
             end if;
-
-        end if;
-    end process proc_sync;
+        end process proc_sync;
+    end generate;
 
     data_o <= data_sync_reg_s(n_stages_g-1);
 
