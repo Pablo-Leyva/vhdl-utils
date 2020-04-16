@@ -16,6 +16,9 @@ architecture behavioural of sync_ff is
 
     signal data_sync_reg_s : std_ulogic_vector(n_stages_g-1 downto 0) := (others => '0');
 
+    attribute ASYNC_REG : string;
+    attribute ASYNC_REG of data_sync_reg_s : signal is "TRUE"; 
+
 begin
 
     data_sync_reg_s(0) <= data_i;

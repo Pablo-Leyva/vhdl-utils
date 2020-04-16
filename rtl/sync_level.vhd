@@ -19,6 +19,9 @@ architecture behavioural of sync_level is
 
     signal level_s : std_ulogic := '0';
 
+    attribute ASYNC_REG : string;
+    attribute ASYNC_REG of level_s : signal is "TRUE"; 
+
 begin
 
     proc_latch_input : process(aclk)
