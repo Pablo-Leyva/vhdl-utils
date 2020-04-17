@@ -6,7 +6,7 @@ entity sync_ff is
 generic ( n_stages_g : positive := 2 );
 port (
     clk    : in   std_ulogic;
-    rst    : in   std_ulogic;
+    rst    : in   std_ulogic := '0';
     data_i : in   std_ulogic;
     data_o : out  std_ulogic
 );
